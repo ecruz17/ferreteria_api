@@ -5,11 +5,16 @@ import dotenv from 'dotenv';
 import productsRoutes from './src/routes/product.js';
 import cors from 'cors';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 const envVar = dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(cors());
 
