@@ -4,17 +4,11 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import productsRoutes from './src/routes/product.js';
 import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 const envVar = dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 app.use(cors());
 
@@ -24,10 +18,9 @@ app.use(bodyParser.json());
 //MIDDLEWARE
 app.use('/api', productsRoutes);
 
-app.use(express.static(path.join(__dirname, "/client/build")));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+//MAIN ROUTE
+app.get('/api', (req, res) => {
+    res.send('<h1>La Ferretería API</h1>');
 });
 
 //MONGOOSE
