@@ -9,7 +9,7 @@
     "node" : "16.x"
   },
   "scripts": {
-    "start": "node index.js",
+    "build": "node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
