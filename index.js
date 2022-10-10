@@ -2,7 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import productsRoutes from './src/routes/product.js';
+import productsRoutes from './src/routes/products.js';
+import providersRoutes from './src/routes/providers.js';
 import cors from 'cors';
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 //MIDDLEWARE
 app.use('/api', productsRoutes);
+app.use('/api', providersRoutes);
 
 //MAIN ROUTE
 app.get('/api', (req, res) => {

@@ -1,0 +1,19 @@
+###
+POST http://localhost:5000/api/providers HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Martillos S.A.",
+    "address": "Martinillo Street",
+    "phone": "3121234576",
+    "managerName": "Pedro Martillo"
+}
+
+###
+GET http://localhost:5000/api/providers HTTP/1.1
+
+###
+GET http://localhost:5000/api/products HTTP/1.1
+
+###
+DELETE http://localhost:5000/api/providers/6340aa5f687065d91f1bb3ac HTTP/1.1
