@@ -4,10 +4,11 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import productsRoutes from './src/routes/products.js';
 import providersRoutes from './src/routes/providers.js';
+import userRoutes from './src/routes/users.js';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 const envVar = dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 //MIDDLEWARE
 app.use('/api', productsRoutes);
 app.use('/api', providersRoutes);
+app.use('/api', userRoutes);
 
 //MAIN ROUTE
 app.get('/api', (req, res) => {
@@ -27,7 +29,12 @@ app.get('/api', (req, res) => {
 
 //MONGOOSE
 mongoose
-    .connect(process.env.MONGODB_URI)
+    .connect(process.env.MONGODB_URI, {
+        writeConcern: {
+            w: 'majority',
+            j: true,
+        }
+    })
     .then(() => console.log('Connected to DB'))
     .catch((error) => console.log(error));
 
