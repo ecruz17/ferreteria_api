@@ -5,10 +5,11 @@ import dotenv from 'dotenv';
 import productsRoutes from './src/routes/products.js';
 import providersRoutes from './src/routes/providers.js';
 import userRoutes from './src/routes/users.js';
+import employeesRoutes from './src/routes/employees.js';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const envVar = dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use('/api', productsRoutes);
 app.use('/api', providersRoutes);
 app.use('/api', userRoutes);
+app.use('/api', employeesRoutes);
 
 //MAIN ROUTE
 app.get('/api', (req, res) => {
