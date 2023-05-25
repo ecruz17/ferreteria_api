@@ -20,7 +20,8 @@ router.post('/employees', async (req, res) => {
         const user = await User.findOne({ email: email });
         const newEmployee = new Employee({
             email: user.email,
-            password: user.password
+            password: user.password,
+            role: '2'
         });
         await newEmployee.save();
         res.status(201).send('Employee created')
@@ -45,9 +46,7 @@ router.post('/employees/login', async (req, res) => {
         if (!isPasswordValid) {
             return res.send({ status: 401, message: 'Invalid password' });
         }
-        const admin = await Employee.findOne({ email: 'f3rr34dm1n$@ferre.com' });
-        const isAdmin = await bcrypt.compare(password, admin.password);
-        if (isAdmin) {
+        if (user.role === '1') {
             return res.send({ status: 202, message: 'Admin account' });
         }
         return res.send({ status: 200, message: 'Login successful' });
